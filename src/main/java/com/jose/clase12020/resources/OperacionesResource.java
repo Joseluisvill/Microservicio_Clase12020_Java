@@ -10,6 +10,7 @@ import com.jose.clasem12020.utilidades.Utilidades;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,6 +27,15 @@ public class OperacionesResource {
     {
         return Response.ok("Esta en otra Ubicacion").build();
     }
+    
+    @GET
+    @Path("/datos/{idclase}")
+    public Response hola(@PathParam(value="ideclase") String id)
+    {
+        return Response
+                .ok("Esta en otra Ubicacion")
+                .build();
+    }
     @GET
     @Path("/saludo")
     public Response saludo()
@@ -41,28 +51,24 @@ public class OperacionesResource {
     public Computadora devolverComputadora()
     {
         Computadora computador= new Computadora("3555ad","HP","Panama 2020","AMD",225.5,5);
-        //computador.getModelo();  
         return computador;
     }
-    /*@GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/computadoradlista")
-    public List<Computadora> devolverLista()
+    @Path("/computadoradefault")
+    public Computadora devolverComputadoraDefault()
     {
-        Computadora computador= new Computadora("3555ad","HP","Panama 2020","AMD");
-        computador.getModelo();
-        return computador;
-    }*/
+        return new Computadora("0004555557","HP","Panama 2020","AMD",225.5,8);
+    }
     
-    
-    
-    /*@GET
+   
+    @GET
     @Path("message")
     @Produces(MediaType.TEXT_PLAIN)
     public String securedMethod()
     {
         return "This API needs login";
-    }*/
+    }
     
 }
 
