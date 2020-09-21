@@ -8,7 +8,9 @@ package com.jose.clase12020.resources;
 import com.jose.clase1m12020.entity.Computadora;
 import com.jose.clasem12020.utilidades.Utilidades;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,8 +44,11 @@ public class OperacionesResource {
     {
         Utilidades utilidades=new Utilidades();
         Computadora computadora=new Computadora("45893");
+        
         String valor=utilidades.saluda();
-        return Response.ok(valor).build();
+        return Response
+                .ok(valor)
+                .build();
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -60,15 +65,19 @@ public class OperacionesResource {
     {
         return new Computadora("0004555557","HP","Panama 2020","AMD",225.5,8);
     }
-    
-   
-    @GET
-    @Path("message")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String securedMethod()
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/computadorapost")
+    public Computadora devolverComputadoraPost()
     {
-        return "This API needs login";
+        return new Computadora("1212","DELL","Panama 2020","INTEL",225.5,8);
     }
-    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/computadorapost/{marca}")
+    public Computadora devolverComputadoraPostArgumentos(@PathParam(value="marca") String marca)
+    {
+        return new Computadora("1212",marca,"Panama 2020","INTEL",225.5,8);
+    }
 }
 
